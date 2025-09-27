@@ -21,20 +21,8 @@ class Carrito {
         }
     }
 
-    // Elimina el artículo completo (por id) y restaura la cantidad al stock del producto
-    fun eliminarProductoPorId(productoId: Int) {
-        val item = items[productoId]
-        if (item != null) {
-            // Restaurar stock en el producto original
-            item.producto.stock += item.cantidad
-            items.remove(productoId)
-            println("🗑 Se eliminó ${item.producto.nombre} del carrito. Se restauraron ${item.cantidad} unidades al inventario.")
-        } else {
-            println("El producto no está en el carrito.")
-        }
-    }
 
-    // Eliminar por índice (útil si mostramos una lista numerada al usuario)
+    // Eliminar por índice
     fun eliminarProductoPorIndice(indice: Int) {
         val lista = items.values.toList()
         if (indice < 1 || indice > lista.size) {
@@ -45,31 +33,6 @@ class Carrito {
         item.producto.stock += item.cantidad
         items.remove(item.producto.id)
         println("🗑 Se eliminó ${item.producto.nombre} del carrito. Se restauraron ${item.cantidad} unidades al inventario.")
-    }
-
-    // Eliminar sólo una cantidad (p. ej. quitar 2 de 5)
-    fun eliminarCantidadPorId(productoId: Int, cantidadAEliminar: Int) {
-        val item = items[productoId]
-        if (item == null) {
-            println("El producto no está en el carrito.")
-            return
-        }
-        if (cantidadAEliminar <= 0) {
-            println("Cantidad inválida.")
-            return
-        }
-
-        if (cantidadAEliminar >= item.cantidad) {
-            // Si elimina igual o más, borramos el item completo
-            item.producto.stock += item.cantidad
-            items.remove(productoId)
-            println("🗑 Se eliminó ${item.producto.nombre} (toda la cantidad) del carrito.")
-        } else {
-            // Reducimos la cantidad en el carrito y restauramos stock parcial
-            item.cantidad -= cantidadAEliminar
-            item.producto.stock += cantidadAEliminar
-            println(" Se eliminaron $cantidadAEliminar de ${item.producto.nombre} del carrito. Quedan ${item.cantidad}.")
-        }
     }
 
     // Mostrar carrito (usa la lista de items en items.values)

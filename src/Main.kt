@@ -1,15 +1,29 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner
+
+// Main.kt (resumen)
 fun main() {
-    val name = "Kotlin"
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    println("Hello, " + name + "!")
+    val tienda = Tienda()
+    val scanner = Scanner(System.`in`)
+    var opcion: Int
+    do {
+        println("\n===== MENÚ PRINCIPAL =====")
+        println("1. Ver productos")
+        println("2. Agregar producto al carrito")
+        println("3. Eliminar producto del carrito")
+        println("4. Ver carrito")
+        println("5. Generar factura")
+        println("0. Salir")
+        print("Seleccione una opción: ")
 
-    for (i in 1..5) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        println("i = $i")
-    }
+        opcion = scanner.nextInt()
+        when (opcion) {
+            1 -> tienda.mostrarProductos()
+            2 -> tienda.seleccionarProducto(scanner)
+            3 -> tienda.eliminarProducto(scanner)
+            4 -> tienda.carrito.mostrarCarrito()
+            5 -> tienda.carrito.generarFactura()
+            0 -> println(" Gracias por su compra. ¡Vuelva pronto!")
+            else -> println("⚠ Opción no válida.")
+        }
+    } while (opcion != 0)
 }
-
