@@ -32,7 +32,7 @@ class Carrito {
         val item = lista[indice - 1]
         item.producto.stock += item.cantidad
         items.remove(item.producto.id)
-        println("🗑 Se eliminó ${item.producto.nombre} del carrito. Se restauraron ${item.cantidad} unidades al inventario.")
+        println("🗑 Se eliminó ${item.producto.nombre} del carrito. Se restauraron ${item.cantidad} contenido al inventario.")
     }
 
     // Mostrar carrito (usa la lista de items en items.values)
